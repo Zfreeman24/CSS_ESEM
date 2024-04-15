@@ -1,0 +1,14 @@
+﻿  random.c
+  sha512.c
+  crypto_util.c
+C:\Users\Zach Freeman\Desktop\ESEM\ESEM\Laptop_Implementation\FourQ_64bit_and_portable\FourQ.h(39,1): fatal error C1189: #error:  -- "Unsupported OS"
+  eccp2.c
+C:\Users\Zach Freeman\Desktop\ESEM\ESEM\Laptop_Implementation\FourQ_64bit_and_portable\FourQ.h(39,1): fatal error C1189: #error:  -- "Unsupported OS"
+  eccp2_core.c
+C:\Users\Zach Freeman\Desktop\ESEM\ESEM\Laptop_Implementation\FourQ_64bit_and_portable\FourQ.h(39,1): fatal error C1189: #error:  -- "Unsupported OS"
+  eccp2_no_endo.c
+C:\Users\Zach Freeman\Desktop\ESEM\ESEM\Laptop_Implementation\FourQ_64bit_and_portable\FourQ.h(39,1): fatal error C1189: #error:  -- "Unsupported OS"
+  kex.c
+C:\Users\Zach Freeman\Desktop\ESEM\ESEM\Laptop_Implementation\FourQ_64bit_and_portable\FourQ.h(39,1): fatal error C1189: #error:  -- "Unsupported OS"
+  schnorrq.c
+C:\Users\Zach Freeman\Desktop\ESEM\ESEM\Laptop_Implementation\FourQ_64bit_and_portable\FourQ.h(39,1): fatal error C1189: #error:  -- "Unsupported OS"
