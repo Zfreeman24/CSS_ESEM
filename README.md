@@ -37,16 +37,12 @@ For each counter encryption, it measures the time taken and accumulates it to ca
 
 It then goes into a loop to generate multiple ECDSA key pairs. For each iteration:
 
-It encrypts a counter using the AES context to generate a pseudo-random byte sequence.
-
-It uses this byte sequence as input to generate an ECDSA public/secret key pair using the ECCRYPTO library.
-
-It measures the time taken to generate the key pair.
-
-It copies the generated public key to the publicAll buffer and secret key to the secretAll buffer at an offset.
+- It encrypts a counter using the AES context to generate a pseudo-random byte sequence.
+- It uses this byte sequence as input to generate an ECDSA public/secret key pair using the ECCRYPTO library.
+- It measures the time taken to generate the key pair.
+- It copies the generated public key to the publicAll buffer and secret key to the secretAll buffer at an offset.
 
 After the loop, it has generated the AES-256 key, 1 ECDSA key pair, and multiple ECDSA key pairs derived from the AES-256 keys. The keys are stored in the provided buffers for later use.
-
 
 ## Licensing
 
