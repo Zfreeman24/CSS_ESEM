@@ -44,6 +44,13 @@ It then goes into a loop to generate multiple ECDSA key pairs. For each iteratio
 
 After the loop, it has generated the AES-256 key, 1 ECDSA key pair, and multiple ECDSA key pairs derived from the AES-256 keys. The keys are stored in the provided buffers for later use.
 
+## Results
+
+Not only did we increase the security of the key generation, we also increased the time it took to generate by a whopping 90.05%! 
+
+3 Runs Average Before Our Implementation: 0.000745
+3 Runs Average After Our Implementation: 0.0000742
+
 ## Licensing
 
 This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
