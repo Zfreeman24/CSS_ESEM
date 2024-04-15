@@ -7,6 +7,7 @@ To compile the code, navigate to the root directory of the project and run the f
 
 ```bash
 make ARCH=x64
+```
 
 ## Licensing
 
