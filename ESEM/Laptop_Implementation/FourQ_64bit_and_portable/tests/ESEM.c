@@ -235,6 +235,9 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     printf("Average encryption time for ctx2: %f seconds\n", average_time_ctx2);
     printf("Average encryption time for ctx3: %f seconds\n", average_time_ctx3);
     printf("Total average encryption time: %f seconds\n", total_average_time);
+    printf("Generated Secret Key: %s\n", secret_key);
+    printf("Generated Public Key: %s\n", public_key);
+    printf("Generated AES Secret Key: %s\n", sk_aes);
 
     return ECCRYPTO_SUCCESS;
 }
