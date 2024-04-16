@@ -15,6 +15,7 @@
 #include "aes256.h"
 #include "blake2.h"
 #include "zmq.h"
+#include <openssl/rand.h>
 
 #define HIGH_SPEED 1
 
@@ -135,10 +136,12 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
 
     unsigned char publicTemp[64];
     aes256_key_t aes_key;
-    // Generate initial AES-256 key 
-    memcpy(sk_aes, aes_key.raw, 32);
+    // Generate initial AES-256 key
+    if (!RAND_bytes(sk_aes, 32)) {
+        return ECCRYPTO_ERROR;
+    }
 
-    // Initialize AES context with generated key
+    // Initialize AES context with generated key 
     aes256_context_t ctx;
     aes256_init(&ctx, &aes_key);
 
