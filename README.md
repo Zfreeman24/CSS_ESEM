@@ -9,7 +9,7 @@ To compile the code, navigate to the 'FourQ_64bit_and_portable' directory of the
 make ARCH=x64
 ```
 
-If you're having issues or the output files are not there try:
+If you're having issues running the code and the output files are there, run:
 
 ```bash
 make clean build
