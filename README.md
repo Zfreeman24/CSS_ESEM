@@ -46,7 +46,7 @@ After the loop, it has generated the AES-256 key, 1 ECDSA key pair, and multiple
 
 ## Results
 
-Not only did we increase the security of the key generation, we also increased the time it took to generate by a whopping 90.05%! 
+Not only did we increase the security of the key generation, we also **decreased** the time it took to generate by a whopping 90.05%! 
 
 - 3 Runs Average Before Our Implementation: 0.000745
 - 3 Runs Average After Our Implementation: 0.0000742
