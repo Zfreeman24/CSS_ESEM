@@ -141,6 +141,9 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
         return ECCRYPTO_ERROR;
     }
 
+    // Copy to aes_key for context initialization
+    memcpy(aes_key.raw, sk_aes, 32); 
+
     // Initialize AES context with generated key 
     aes256_context_t ctx;
     aes256_init(&ctx, &aes_key);
