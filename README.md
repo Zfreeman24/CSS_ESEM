@@ -51,6 +51,10 @@ Not only did we increase the security of the key generation, we also increased t
 - 3 Runs Average Before Our Implementation: 0.000745
 - 3 Runs Average After Our Implementation: 0.0000742
 
+### Reason for improvement
+
+The improvement came from using a much more lightweight and compact encryption library, allowing for quicker calculations for the key generation.
+
 # Improvements And Why The Original Was Lacking
 
 ## Improved Key Encryption Methodology
@@ -72,6 +76,12 @@ The key encryption methodology in the modified implementation of the `ESEM_KeyGe
 ### Adherence to Cryptographic Best Practices
 
 - **Key Handling**: The modified implementation improves key handling by separating key initialization, usage, and destruction, which aligns with cryptographic best practices. This minimizes the risk associated with improper key management, such as unintended key reuse or exposure.
+
+# AES-256 Improvement
+
+## Security Implications
+
+- **Cache Timing Attacks**: Lookup table-based implementations of AES are susceptible to cache-timing attacks because attackers can potentially observe the time it takes to access certain parts of the memory. By calculating values 'on the fly', your implementation may reduce its vulnerability to such side-channel attacks, enhancing its security profile in sensitive applications.
 
 ### Conclusion
 
