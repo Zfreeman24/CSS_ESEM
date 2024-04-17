@@ -25,26 +25,38 @@ Our goal was to increase the encryption of the key generation, as we felt the in
 
 We implemented AES-256 encryption into the key generation function, further increasing the security of the key generation.
 
-## How it works
+# ESEM Key Generation Module | How it works
 
-It takes in buffers to store the generated AES-256 secret key, ECDSA secret key, ECDSA public key, and multiple public and secret ECDSA key pairs.
+This module is responsible for generating public and secret keys for the ESEM (Efficient Secure Enrollment Mechanism) protocol.
 
-It outputs the generated AES-256 key, ECDSA public/secret key pair, and multiple ECDSA public/secret key pairs stored in the provided buffers.
+## Overview
 
-First, it generates an initial random AES-256 bit encryption key and stores it in sk_aes. It initializes an AES context with this key to encrypt counters later.
+The module utilizes buffers for storing the generated keys and intermediate values. The outputs are comprised of a secret key, a public key, and arrays of these keys for multiple instances (e.g., `secretAll_1`, `publicAll_1`, and so on).
 
-It generates 3 distinct AES-256 bit keys by encrypting counters using the AES context. This is done to derive unique keys from the initial random key.
+### Logic Flow
 
-For each counter encryption, it measures the time taken and accumulates it to calculate average encryption time later.
+1. **Generate AES-256 Key**: 
+    - An AES-256 encryption key is generated for deriving additional key pairs later on.
 
-It then goes into a loop to generate multiple ECDSA key pairs. For each iteration:
+2. **Generate ECC Key Pair**: 
+    - Using the `ECCRYPTO` library, a single public/secret key pair is created, which serves as the main key pair for use.
 
-- It encrypts a counter using the AES context to generate a pseudo-random byte sequence.
-- It uses this byte sequence as input to generate an ECDSA public/secret key pair using the ECCRYPTO library.
-- It measures the time taken to generate the key pair.
-- It copies the generated public key to the publicAll buffer and secret key to the secretAll buffer at an offset.
+3. **Generate Additional Key Pairs**: 
+    - This involves:
+        - Encrypting a counter value with the AES key to obtain a random byte sequence.
+        - Using this random value to create another public/secret key pair.
+        - Storing the newly generated key pairs in the respective arrays.
 
-After the loop, it has generated the AES-256 key, 1 ECDSA key pair, and multiple ECDSA key pairs derived from the AES-256 keys. The keys are stored in the provided buffers for later use.
+4. **Performance Measurement**: 
+    - The execution time for the AES encryption and public key generation is measured and logged for performance analysis.
+
+5. **Status Return**: 
+    - The process concludes by returning a success or error status.
+
+## Cryptographic Details
+
+- The key generation mechanism employs a cryptographic pseudo-random number generator based on AES-256.
+- The generation of the public keys and the cryptographic operations are handled by the `ECCRYPTO` library.
 
 ## Results
 
