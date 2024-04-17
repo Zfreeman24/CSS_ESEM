@@ -15,6 +15,8 @@ If you're having issues running the code and the output files are there, run:
 make clean build
 ```
 
+If you're still having issues, you may be missing some library installations such as blake2, which our group encountered.
+
 ## Goal of the project
 
 Our goal was to increase the encryption of the key generation, as we felt the initial key generation was inadequate given the importance of health documents
