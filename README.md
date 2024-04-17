@@ -67,7 +67,17 @@ Not only did we increase the security of the key generation, we also **decreased
 
 ### Reason for improvement
 
-The improvement came from using a much more lightweight and compact encryption library, allowing for quicker calculations for the key generation.
+The AES-256 implementation is generally faster and more secure for several reasons:
+
+- **Block Size Operations**: AES-256 operates on the full AES block size of 128 bits at once using 32-bit registers and operations, whereas the 64-bit version would have to split operations into 64-bit chunks.
+
+- **Key Scheduling**: AES-256 precomputes all the round keys upfront, which is more efficient than generating them on-the-fly as a 64-bit version would necessitate.
+
+- **S-box Substitution**: The 256-bit version employs table lookups for the S-box substitution, which are quicker than calculating it, a process that a 64-bit version would carry out in real-time.
+
+- **Parallel Processing**: With the ability to utilize parallel SIMD (Single Instruction, Multiple Data) instructions and registers, AES-256 can encrypt multiple blocks simultaneously, enhancing throughput.
+
+- **Security**: AES-256 offers a significantly larger key space, providing enhanced security against brute-force attacks when compared to a 64-bit key size.
 
 # Improvements And Why The Original Was Lacking
 
