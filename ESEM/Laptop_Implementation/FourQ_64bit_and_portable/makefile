@@ -125,7 +125,7 @@ crypto_test: $(OBJECTS_CRYPTO_TEST)
 	$(CC) -o crypto_test $(OBJECTS_CRYPTO_TEST) $(ARM_SETTING)
 
 ESEM: $(OBJECTS_ESEM)
-	$(CC) -o ESEM $(OBJECTS_ESEM) $(ARM_SETTING) -lzmq
+	$(CC) -o ESEM $(OBJECTS_ESEM) $(ARM_SETTING) -lzmq -lssl -lcrypto
 
 ecc_test: $(OBJECTS_ECC_TEST)
 	$(CC) -o ecc_test $(OBJECTS_ECC_TEST) $(ARM_SETTING)

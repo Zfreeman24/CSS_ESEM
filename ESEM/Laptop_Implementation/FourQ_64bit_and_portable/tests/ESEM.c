@@ -15,7 +15,7 @@
 #include "aes256.h"
 #include "blake2.h"
 #include "zmq.h"
-#include <openssl/rand.h>
+#include <stdlib.h>
 
 #define HIGH_SPEED 1
 
@@ -36,16 +36,6 @@
     #define ESEM_L            3
     #define BPV_N             1024
 #endif
-
-
-void print_hex(unsigned char* arr, int len)
-{
-    int i;
-    printf("\n");
-    for(i = 0; i < len; i++)
-        printf("%x", (unsigned char) arr[i]);
-    printf("\n");
-}
  
 void menu(){
     printf("NOTE: Currently, our implementation only has the communication between the verifier and the server \n");
@@ -58,6 +48,22 @@ void menu(){
     printf("(4) Verifier\n");
     printf("(5) Exit\n\n\n");
 
+}
+
+/**
+ * Prints the given byte array in hexadecimal format.
+ *
+ * @param data The byte array to print.
+ * @param length The length of the byte array.
+ */
+void print_hex(const unsigned char *data, size_t length);
+void print_hex(const unsigned char *data, size_t length)
+{
+    for (size_t i = 0; i < length; i++)
+    {
+        printf("%02X", data[i]); // Prints each byte in hex format
+    }
+    printf("\n");
 }
 
 // Helper function to generate public key from secret key
@@ -136,17 +142,9 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
 
     unsigned char publicTemp[64];
     aes256_key_t aes_key;
-    // Generate initial AES-256 key
-    if (!RAND_bytes(sk_aes, 32)) {
-        return ECCRYPTO_ERROR;
-    }
-
-    // Copy to aes_key for context initialization
-    memcpy(aes_key.raw, sk_aes, 32); 
 
     // Initialize AES context with generated key 
     aes256_context_t ctx;
-    aes256_init(&ctx, &aes_key);
 
     // Generate 3 distinct AES keys using counters 
     // These will be used to generate multiple key pairs
@@ -154,9 +152,6 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
 
     // Measure time to encrypt counters
     start = clock();
-    aes256_encrypt_ecb(&ctx, &ctr1);
-    aes256_encrypt_ecb(&ctx, &ctr2);
-    aes256_encrypt_ecb(&ctx, &ctr3);
     end = clock();
     double cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
     printf("Encryption time for counters: %f seconds\n", cpu_time_used);
@@ -169,7 +164,6 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
 
     // Generate initial public/private key pair
     start = clock();
-    Status = PublicKeyGeneration(secret_key, public_key);
     if (Status != ECCRYPTO_SUCCESS)
     {
         return Status;
@@ -190,6 +184,23 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     // Generate multiple key pairs using each context
     for (uint64_t i = 0; i < BPV_N; i++)
     {
+        // Generate initial AES-256 key
+        if (!RAND_bytes(sk_aes, 32)) {
+            return ECCRYPTO_ERROR;
+        }
+
+        // Initialize AES context 
+        aes256_init(&ctx, &aes_key);
+
+        // Encrypt counter
+        aes256_encrypt_ecb(&ctx, &ctr1);
+
+        // Derive secret key
+        memcpy(secret_key, ctr1.raw, 32);
+
+        // Generate public key 
+        Status = PublicKeyGeneration(secret_key, public_key);
+
         // Call helper function for each iteration and each context
         Status = generateKeys(&ctx1, prf_out2, publicTemp, i, publicAll_1, secretAll_1, &total_time_ctx1);
         if (Status != ECCRYPTO_SUCCESS)
@@ -200,6 +211,23 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
 
     for (uint64_t i = 0; i < BPV_N; i++)
     {
+        // Generate AES key
+        if (!RAND_bytes(sk_aes, 32)) {
+            return ECCRYPTO_ERROR;
+        }  
+
+        // Initialize AES context 
+        aes256_init(&ctx, &aes_key);
+
+        // Encrypt counter
+        aes256_encrypt_ecb(&ctx, &ctr2);
+
+        // Derive secret key
+        memcpy(secret_key, ctr2.raw, 32);  
+
+        // Generate public key 
+        Status = PublicKeyGeneration(secret_key, public_key);
+
         // Call helper function for each iteration and each context
         Status = generateKeys(&ctx2, prf_out2, publicTemp, i, publicAll_2, secretAll_2, &total_time_ctx2);
         if (Status != ECCRYPTO_SUCCESS)
@@ -210,6 +238,23 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
 
     for (uint64_t i = 0; i < BPV_N; i++)
     {
+        // Generate AES key
+        if (!RAND_bytes(sk_aes, 32)) {
+            return ECCRYPTO_ERROR;
+        }  
+
+        // Initialize AES context 
+        aes256_init(&ctx, &aes_key);
+
+        // Encrypt counter
+        aes256_encrypt_ecb(&ctx, &ctr3);
+
+        // Derive secret key
+        memcpy(secret_key, ctr3.raw, 32);
+
+        // Generate public key 
+        Status = PublicKeyGeneration(secret_key, public_key);
+
         // Call helper function for each iteration and each context
         Status = generateKeys(&ctx3, prf_out2, publicTemp, i, publicAll_3, secretAll_3, &total_time_ctx3);
         if (Status != ECCRYPTO_SUCCESS)
@@ -235,9 +280,12 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     printf("Average encryption time for ctx2: %f seconds\n", average_time_ctx2);
     printf("Average encryption time for ctx3: %f seconds\n", average_time_ctx3);
     printf("Total average encryption time: %f seconds\n", total_average_time);
-    printf("Generated Secret Key: %s\n", secret_key);
-    printf("Generated Public Key: %s\n", public_key);
-    printf("Generated AES Secret Key: %s\n", sk_aes);
+    printf("sk-aes: ");
+    print_hex(sk_aes, sizeof(sk_aes));
+    printf("secret_key: ");
+    print_hex(secret_key, sizeof(secret_key));
+    printf("public_key: ");  
+    print_hex(public_key, sizeof(public_key));
 
     return ECCRYPTO_SUCCESS;
 }
