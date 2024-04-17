@@ -56,7 +56,6 @@ void menu(){
  * @param data The byte array to print.
  * @param length The length of the byte array.
  */
-void print_hex(const unsigned char *data, size_t length);
 void print_hex(const unsigned char *data, size_t length)
 {
     for (size_t i = 0; i < length; i++)
