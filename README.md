@@ -111,7 +111,7 @@ The key encryption methodology in the modified implementation of the `ESEM_KeyGe
 
 Overall, the modified `ESEM_KeyGen` function leverages structured and secure coding practices, better encryption methodologies, and enhanced performance tracking, making it a superior choice in terms of security and efficiency for cryptographic key generation in embedded systems.
 
-##References 
+## References 
 1.Andriani, R., Wijayanti, S. E., & Wibowo, F. W. (2018). Comparison Of AES 128, 192 And 256 Bit Algorithm For Encryption And Description File. In 2018 3rd International Conference on Information Technology, Information System and Electrical Engineering (ICITISEE) (pp. 13-14). IEEE.
 
 We use the paper comparing AES encryption algorithms (AES-128, AES-192, and AES-256) to gain insights into the trade-offs between security and efficiency in encryption processes. By examining the processing time and CPU usage of different AES key lengths, we can make informed decisions about which encryption method best suits our needs.
