@@ -114,14 +114,14 @@ Overall, the modified `ESEM_KeyGen` function leverages structured and secure cod
 ## References 
 1. Andriani, R., Wijayanti, S. E., & Wibowo, F. W. (2018). Comparison Of AES 128, 192 And 256 Bit Algorithm For Encryption And Description File. In 2018 3rd International Conference on Information Technology, Information System and Electrical Engineering (ICITISEE) (pp. 13-14). IEEE.
 
-We use the paper comparing AES encryption algorithms (AES-128, AES-192, and AES-256) to gain insights into the trade-offs between security and efficiency in encryption processes. By examining the processing time and CPU usage of different AES key lengths, we can make informed decisions about which encryption method best suits our needs.
+a. We use the paper comparing AES encryption algorithms (AES-128, AES-192, and AES-256) to gain insights into the trade-offs between security and efficiency in encryption processes. By examining the processing time and CPU usage of different AES key lengths, we can make informed decisions about which encryption method best suits our needs.
 In the context of our study, where the security of health documents is paramount, understanding the performance implications of various encryption algorithms is crucial. This paper helps us compare the strength of AES-256 encryption, which we implemented in our key generation process, with other AES key lengths. 
 For instance, while AES-128 may offer faster processing times, AES-256 provides stronger security due to its larger key size. By acknowledging this research, we demonstrate a commitment to enhancing the security of our key generation process while considering the balance between security and computational efficiency.
 
 
 2. Rekha, S. S., & Saravanan, P. (2019). Low-Cost AES-128 Implementation for Edge Devices in IoT Applications. Journal of Circuits, Systems, and Computers, 28(04), 1950062.
 
-We're using this paper to figure out how to make generating encryption keys safer for the Advanced Encryption Standard (AES) on devices with limited resources, like those in the Internet of Things (IoT). Even though the paper talks about making AES better for IoT devices, we can still learn useful tricks for making key generation stronger. By understanding how they make AES safer and faster, we can find ways to improve key generation, especially when there's not much computing power available. So, by learning from this paper, we want to make encryption stronger and quicker, even on devices with limited resources.
+a. We're using this paper to figure out how to make generating encryption keys safer for the Advanced Encryption Standard (AES) on devices with limited resources, like those in the Internet of Things (IoT). Even though the paper talks about making AES better for IoT devices, we can still learn useful tricks for making key generation stronger. By understanding how they make AES safer and faster, we can find ways to improve key generation, especially when there's not much computing power available. So, by learning from this paper, we want to make encryption stronger and quicker, even on devices with limited resources.
 
 
 ## Licensing
