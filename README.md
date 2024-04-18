@@ -1,4 +1,4 @@
-# ESEM | AES-256 | A Computer System Security Group Project
+# ESEM | AES-256 | A Computer System Security Group Project | Team name : "The Encryptables"
 
 Energy-Aware Signature for Embedded Medical Devices (ESEM) is a lightweight signature scheme that minimizes the energy consumption of the signer, specifically designed for implantable medical devices where the energy consumption is of top priority.
 
