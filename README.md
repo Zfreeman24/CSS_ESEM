@@ -114,7 +114,7 @@ Overall, the modified `ESEM_KeyGen` function leverages structured and secure cod
 ## References 
 1. Andriani, R., Wijayanti, S. E., & Wibowo, F. W. (2018). Comparison Of AES 128, 192 And 256 Bit Algorithm For Encryption And Description File. In 2018 3rd International Conference on Information Technology, Information System and Electrical Engineering (ICITISEE) (pp. 13-14). IEEE.
 
-We use the paper comparing AES encryption algorithms (AES-128, AES-192, and AES-256) to gain insights into the trade-offs between security and efficiency in encryption processes. By examining the processing time and CPU usage of different AES key lengths, we can make informed decisions about which encryption method best suits our needs.
+We used the paper comparing AES encryption algorithms (AES-128, AES-192, and AES-256) to gain insights into the trade-offs between security and efficiency in encryption processes. By examining the processing time and CPU usage of different AES key lengths, we can make informed decisions about which encryption method best suits our needs.
 In the context of our study, where the security of health documents is paramount, understanding the performance implications of various encryption algorithms is crucial. This paper helps us compare the strength of AES-256 encryption, which we implemented in our key generation process, with other AES key lengths. 
 For instance, while AES-128 may offer faster processing times, AES-256 provides stronger security due to its larger key size. By acknowledging this research, we demonstrate a commitment to enhancing the security of our key generation process while considering the balance between security and computational efficiency.
 
