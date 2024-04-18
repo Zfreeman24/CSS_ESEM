@@ -2,6 +2,20 @@
 
 Energy-Aware Signature for Embedded Medical Devices (ESEM) is a lightweight signature scheme that minimizes the energy consumption of the signer, specifically designed for implantable medical devices where the energy consumption is of top priority.
 
+## Table of Contents
+- [How to Compile](#how-to-compile)
+- [Goal of the Project](#goal-of-the-project)
+- [What We Did](#what-we-did)
+- [ESEM Key Generation Module | How it Works](#esem-key-generation-module--how-it-works)
+- [Cryptographic Details](#cryptographic-details)
+- [Results](#results)
+- [Improvements And Why The Original Was Lacking](#improvements-and-why-the-original-was-lacking)
+- [Security Implications/Improvement](#security-implicationsimprovement)
+- [Lessons Learned](#lessons-learned)
+- [Conclusion](#conclusion)
+- [References](#references)
+- [Licensing](#licensing)
+
 ## How to Compile
 To compile the code, navigate to the 'FourQ_64bit_and_portable' directory of the project and run the following command:
 
