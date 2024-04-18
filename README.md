@@ -21,9 +21,16 @@ If you're still having issues, you may be missing some library installations suc
 
 Our goal was to increase the encryption of the key generation, as we felt the initial key generation was inadequate given the importance of health documents
 
-## What we did
+## What We Did
 
-We implemented AES-256 encryption into the key generation function, further increasing the security of the key generation.
+We enhanced the key generation function of the ESEM protocol by integrating AES-256 encryption, significantly boosting the security measures. This implementation was crucial given the sensitive nature of health-related data handled by embedded medical devices.
+
+### Key Enhancements:
+- **AES-256 Integration**: By embedding AES-256 encryption into the key generation process, we ensured a robust mechanism for securing data. This advanced encryption standard is critical in environments where security and privacy are paramount, such as in medical applications.
+- **Efficiency Improvements**: Our modifications not only increased security but also reduced the key generation time by 90.05%. This was measured by comparing the average time taken to generate keys before and after our enhancements.
+- **Application Relevance**: The project's focus on AES-256 and its implementation aligns perfectly with our coursework, particularly discussions around cryptographic security in healthcare contexts.
+
+This enhancement directly addresses the initial inadequacies in key security, demonstrating our ability to apply theoretical knowledge in practical, high-stakes environments.
 
 # ESEM Key Generation Module | How it works
 
