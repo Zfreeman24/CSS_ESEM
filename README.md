@@ -101,7 +101,7 @@ The key encryption methodology in the modified implementation of the `ESEM_KeyGe
 
 - **Key Handling**: The modified implementation improves key handling by separating key initialization, usage, and destruction, which aligns with cryptographic best practices. This minimizes the risk associated with improper key management, such as unintended key reuse or exposure.
 
-# AES-256 Improvement
+# AES-256 Security Improvement
 
 ## Security Implications
 
