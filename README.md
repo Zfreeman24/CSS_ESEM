@@ -101,11 +101,18 @@ The key encryption methodology in the modified implementation of the `ESEM_KeyGe
 
 - **Key Handling**: The modified implementation improves key handling by separating key initialization, usage, and destruction, which aligns with cryptographic best practices. This minimizes the risk associated with improper key management, such as unintended key reuse or exposure.
 
-# AES-256 Security Improvement
-
-## Security Implications
+## Security Implications/Improvement
 
 - **Cache Timing Attacks**: Lookup table-based implementations of AES are susceptible to cache-timing attacks because attackers can potentially observe the time it takes to access certain parts of the memory. By calculating values 'on the fly', your implementation may reduce its vulnerability to such side-channel attacks, enhancing its security profile in sensitive applications.
+
+## Lessons Learned
+
+In our recent project, we implemented AES-256 encryption to bolster the security of key generation for embedded medical devices. Through this endeavor, we deepened our understanding of cryptographic principles and their practical applications, particularly in the realm of symmetric encryption.
+
+One of the key learnings from this topic is the importance of symmetric encryption, such as AES, in ensuring data confidentiality and integrity. We learned in class about the significance of symmetric key generation, where both parties share the same secret key for encryption and decryption. This aspect directly applies to our project, where the implementation of AES-256 relies on symmetric key generation to safeguard sensitive medical data.
+
+Furthermore, our project's focus on AES-256 encryption aligns with our exploration of cryptographic techniques tailored to address specific security needs. This resonates with our class discussions on optimizing cryptographic algorithms for efficiency without compromising on security, especially in contexts like healthcare where data privacy is of utmost importance.
+
 
 ### Conclusion
 
