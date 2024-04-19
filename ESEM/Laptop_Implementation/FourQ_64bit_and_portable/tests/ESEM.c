@@ -287,16 +287,16 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     total_average_time /= 3;
 
     printf("Final secret_key: ");
-    print_hex(secret_key, sizeof(secret_key));
+    print_hex(secret_key, 32);
     printf("Final public_key: ");  
-    print_hex(public_key, sizeof(public_key));
+    print_hex(public_key, 64);
 
     printf("Average encryption time for ctx1: %f seconds\n", average_time_ctx1);
     printf("Average encryption time for ctx2: %f seconds\n", average_time_ctx2);
     printf("Average encryption time for ctx3: %f seconds\n", average_time_ctx3);
     printf("Total average encryption time: %f seconds\n", total_average_time);
     printf("sk-aes: ");
-    print_hex(sk_aes, sizeof(sk_aes));
+    print_hex(sk_aes, 32);
 
     return ECCRYPTO_SUCCESS;
 }
