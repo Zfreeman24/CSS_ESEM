@@ -84,7 +84,7 @@ ECCRYPTO_STATUS generateKeys(aes256_context_t *ctx, unsigned char *prf_out2, uns
     *total_time += cpu_time_used; // Accumulate the time for each iteration
 
     // Print encryption time
-    printf("Encryption time for iteration %llu: %f seconds\n", iteration + 1, cpu_time_used);
+    //printf("Encryption time for iteration %llu: %f seconds\n", iteration + 1, cpu_time_used);
 
     // Copy encrypted counter to buffer
     memcpy(prf_out2, prf_out.raw, 32);
@@ -101,7 +101,7 @@ ECCRYPTO_STATUS generateKeys(aes256_context_t *ctx, unsigned char *prf_out2, uns
 
     // Measure public key gen time
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-    printf("Public key generation time for iteration %llu: %f seconds\n", iteration + 1, cpu_time_used);
+    //printf("Public key generation time for iteration %llu: %f seconds\n", iteration + 1, cpu_time_used);
 
     // Copy keys to output buffers
     memcpy(publicAll + iteration * 64, publicTemp, 64);
@@ -135,7 +135,6 @@ ECCRYPTO_STATUS generateKeys(aes256_context_t *ctx, unsigned char *prf_out2, uns
  */
 ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, unsigned char *public_key, unsigned char *publicAll_1, unsigned char *publicAll_2, unsigned char *publicAll_3, unsigned char *secretAll_1, unsigned char *secretAll_2, unsigned char *secretAll_3, unsigned char *tempKey1, unsigned char *tempKey2, unsigned char *tempKey3)
 {
-
     ECCRYPTO_STATUS Status = ECCRYPTO_SUCCESS;
     clock_t start, end;
 
@@ -170,6 +169,10 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     end = clock();
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
     printf("Key pair generation time: %f seconds\n", cpu_time_used);
+    printf("Initial secret_key: ");
+    print_hex(secret_key, sizeof(secret_key));
+    printf("Initial public_key: ");  
+    print_hex(public_key, sizeof(public_key));
 
     // Initialize AES contexts with generated keys
     aes256_context_t ctx1, ctx2, ctx3;
@@ -207,6 +210,10 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
             return Status;
         }
     }
+    printf("secret_key after first round of AES encryption: ");
+    print_hex(secret_key, sizeof(secret_key));
+    printf("public_key after first round of AES encryption: ");  
+    print_hex(public_key, sizeof(public_key));
 
     for (uint64_t i = 0; i < BPV_N; i++)
     {
@@ -234,6 +241,10 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
             return Status;
         }
     }
+    printf("secret_key after second round of AES-256 encryption: ");
+    print_hex(secret_key, sizeof(secret_key));
+    printf("public_key after second round of AES-256 encryption: ");  
+    print_hex(public_key, sizeof(public_key));
 
     for (uint64_t i = 0; i < BPV_N; i++)
     {
@@ -275,16 +286,17 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     double total_average_time = average_time_ctx1 + average_time_ctx2 + average_time_ctx3;
     total_average_time /= 3;
 
+    printf("Final secret_key: ");
+    print_hex(secret_key, sizeof(secret_key));
+    printf("Final public_key: ");  
+    print_hex(public_key, sizeof(public_key));
+
     printf("Average encryption time for ctx1: %f seconds\n", average_time_ctx1);
     printf("Average encryption time for ctx2: %f seconds\n", average_time_ctx2);
     printf("Average encryption time for ctx3: %f seconds\n", average_time_ctx3);
     printf("Total average encryption time: %f seconds\n", total_average_time);
     printf("sk-aes: ");
     print_hex(sk_aes, sizeof(sk_aes));
-    printf("secret_key: ");
-    print_hex(secret_key, sizeof(secret_key));
-    printf("public_key: ");  
-    print_hex(public_key, sizeof(public_key));
 
     return ECCRYPTO_SUCCESS;
 }
