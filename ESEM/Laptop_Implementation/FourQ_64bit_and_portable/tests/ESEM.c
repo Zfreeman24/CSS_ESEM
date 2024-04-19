@@ -170,9 +170,9 @@ ECCRYPTO_STATUS ESEM_KeyGen(unsigned char *sk_aes, unsigned char *secret_key, un
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
     printf("Key pair generation time: %f seconds\n", cpu_time_used);
     printf("Initial secret_key: ");
-    print_hex(secret_key, sizeof(secret_key));
+    print_hex(secret_key, 32);
     printf("Initial public_key: ");  
-    print_hex(public_key, sizeof(public_key));
+    print_hex(public_key, 64);
 
     // Initialize AES contexts with generated keys
     aes256_context_t ctx1, ctx2, ctx3;
